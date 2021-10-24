@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multiplication Table</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Verdana, Helvetica, Arial;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	text-align: center;
+	font-size: 3em;
+}
+
+#main {
+	width: 90vw;
+	margin: auto;
+}
+
+#left-hand-side {
+	margin-bottom: 16px;
+	font-size: 1.2em;
+}
+
+#right-hand-side {
+	font-size: inherit;
+	text-align: inherit;
+	display: block;
+	width: 50vw;
+	max-width: 200px;
+	margin: auto;
+	margin-bottom: 12px;
+	border-radius: 20px;
+	border-width: 7px;
+}
+
+#right-hand-side:focus {
+	outline: none;
+}
+
+button {
+	font-size: 0.9em;
+	border: 0;
+	border-radius: 20px;
+	background: black;
+	color: white;
+	padding: 10px;
+}
+
+#num-correct {
+	color: green;
+}
+
+#num-wrong {
+	color: red;
+}
+
+#num-correct, #num-wrong, #num-total {
+	font-size: 0.6em;
+	margin-top: 18px;
+	margin-bottom: 0;
+}
+
+#finishButton {
+	font-size: 0.6em;
+}
+
+.hidden {
+	display: none !Important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+</style>
+</head>
+<body>
+
+	<div id="main">
+		<div id="interface">
+			<p id="left-hand-side"></p>
+			<input id="right-hand-side" type="number" min="1" required/>
+			<button onclick="check()">Check</button>
+		</div>
+
+		<p id="num-correct">Correct: 0</p>
+		<p id="num-wrong">Wrong: 0</p>
+		<p id="num-total">Total: 0</p>
+		<button id="finishButton" onclick="summarize()">Finish</button>
+
+		<div id="summary" class="hidden">
+			<p>100% accuracy.</p>
+			<button onclick="location.reload()">Play Again</button>
+		</div>
+	</div>
+
+<audio id="correct-sfx" autoplay>
+	<source src="correct_sound_effect.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="cheering-sfx" autoplay>
+	<source src="cheering_sound_effect.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="transmission-st" autoplay loop>
+	<source src="transmission_soundtrack.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+	var leftHandSide = document.getElementById("left-hand-side"),
+		rightHandSide = document.getElementById("right-hand-side"),
+		textNumCorrect = document.getElementById("num-correct"),
+		textNumWrong = document.getElementById("num-wrong"),
+		textNumTotal = document.getElementById("num-total"),
+		correctSfx = document.getElementById("correct-sfx"),
+		cheeringSfx = document.getElementById("cheering-sfx"),
+		transmissionSt = document.getElementById("transmission-st"),
+		min = 2, max = 10,
+		multiplicand, 
+		multiplier, 
+		product, 
+		numCorrect = 0,
+		numWrong = 0,
+		numQuestions = 0;
+
+	correctSfx.volume = 0.3;
+	transmissionSt.volume = 0.25;
+
+	function randomIntFromRange(min, max) {
+		return Math.round(min+Math.random()*(max-min));
+	}	
+
+	function generateNextQuestion() {			
+
+		multiplicand = randomIntFromRange(min, max);
+		multiplier = randomIntFromRange(min, max);
+		product = multiplicand * multiplier;
+
+		leftHandSide.innerText = multiplicand + " × " + multiplier;
+	}
+
+	function check() {
+		if(rightHandSide.value == product) {
+			numCorrect++;
+			textNumCorrect.innerText = "Correct: " + numCorrect;
+			correctSfx.load();
+		} else {
+			numWrong++;
+			textNumWrong.innerText = "Wrong: " + numWrong;
+			alert("The correct answer is " + product + "!");
+		}
+
+		numQuestions++;
+		textNumTotal.innerText = "Total: " + numQuestions;
+
+		rightHandSide.value = null;
+		generateNextQuestion();
+
+		rightHandSide.focus();
+	}
+	
+	function summarize() {
+		if(numQuestions == 0) {
+			alert("You haven't answered a single question!");
+			return;
+		}
+
+		var interface = document.getElementById("interface"),
+			summary = document.getElementById("summary"),
+			finishButton = document.getElementById("finishButton");
+		
+
+		summary.className = "";		
+		interface.className = "hidden";
+		finishButton.className = "hidden";
+
+		summary.querySelector("p").innerText = Math.round(100.0*numCorrect/numQuestions) + "% Accuracy";
+		cheeringSfx.load();
+	}
+
+	rightHandSide.addEventListener("click", function(event) {
+  		transmissionSt.load();
+	});
+
+	rightHandSide.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) //13 = Enter
+    			check();
+	});
+
+	generateNextQuestion();
+
+</script>
+</body>
+</html>
