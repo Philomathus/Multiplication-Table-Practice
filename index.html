@@ -117,10 +117,6 @@ input[type=number] {
 	<source src="cheering_sound_effect.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="transmission-st" autoplay loop>
-	<source src="transmission_soundtrack.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 	var leftHandSide = document.getElementById("left-hand-side"),
 		rightHandSide = document.getElementById("right-hand-side"),
@@ -129,7 +125,6 @@ input[type=number] {
 		textNumTotal = document.getElementById("num-total"),
 		correctSfx = document.getElementById("correct-sfx"),
 		cheeringSfx = document.getElementById("cheering-sfx"),
-		transmissionSt = document.getElementById("transmission-st"),
 		min = 2, max = 10,
 		multiplicand, 
 		multiplier, 
@@ -139,7 +134,6 @@ input[type=number] {
 		numQuestions = 0;
 
 	correctSfx.volume = 0.3;
-	transmissionSt.volume = 0.25;
 
 	function randomIntFromRange(min, max) {
 		return Math.round(min+Math.random()*(max-min));
@@ -192,10 +186,6 @@ input[type=number] {
 		summary.querySelector("p").innerText = Math.round(100.0*numCorrect/numQuestions) + "% Accuracy";
 		cheeringSfx.load();
 	}
-
-	rightHandSide.addEventListener("click", function(event) {
-  		transmissionSt.load();
-	});
 
 	rightHandSide.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) //13 = Enter
