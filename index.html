@@ -149,7 +149,7 @@ input[type=number] {
 	}
 
 	function check() {
-		if(rightHandSide.value == null)
+		if(rightHandSide.value.isEmpty())
 			return;
 		
 		if(rightHandSide.value == product) {
@@ -165,7 +165,7 @@ input[type=number] {
 		numQuestions++;
 		textNumTotal.innerText = "Total: " + numQuestions;
 
-		rightHandSide.value = null;
+		rightHandSide.value = '';
 		generateNextQuestion();
 
 		rightHandSide.focus();
