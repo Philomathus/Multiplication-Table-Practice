@@ -94,7 +94,7 @@ input[type=number] {
 	<div id="main">
 		<div id="interface">
 			<p id="left-hand-side"></p>
-			<input id="right-hand-side" type="number" min="1"/>
+			<input id="right-hand-side" type="number" min="1" required/>
 			<button onclick="check()">Check</button>
 		</div>
 
@@ -113,8 +113,12 @@ input[type=number] {
 	<source src="correct_sound_effect.mp3" type="audio/mpeg">
 </audio>
 
-<audio id="cheering-sfx">
-	<source src="cheering_sound_effect.mp3" type="audio/mpeg">
+<audio id="complete-sfx">
+	<source src="complete_sound_effect.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="background-music" autoplay loop>
+	<source src="background_music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -124,8 +128,9 @@ input[type=number] {
 		textNumWrong = document.getElementById("num-wrong"),
 		textNumTotal = document.getElementById("num-total"),
 		correctSfx = document.getElementById("correct-sfx"),
-		cheeringSfx = document.getElementById("cheering-sfx"),
-		min = 2, max = 10,
+		completeSfx = document.getElementById("complete-sfx"),
+		backgroundMusic = document.getElementById("background-music"),
+		min = 2, max = 11,
 		multiplicand, 
 		multiplier, 
 		product, 
@@ -134,6 +139,7 @@ input[type=number] {
 		numQuestions = 0;
 
 	correctSfx.volume = 0.3;
+	backgroundMusic.volume = 0.25;
 
 	function randomIntFromRange(min, max) {
 		return Math.round(min+Math.random()*(max-min));
@@ -149,13 +155,16 @@ input[type=number] {
 	}
 
 	function check() {
-		if(rightHandSide.value.isEmpty())
+		rightHandSide.focus();
+
+		if(rightHandSide.value == "")
 			return;
 		
 		if(rightHandSide.value == product) {
 			numCorrect++;
 			textNumCorrect.innerText = "Correct: " + numCorrect;
 			correctSfx.load();
+			correctSfx.play();
 		} else {
 			numWrong++;
 			textNumWrong.innerText = "Wrong: " + numWrong;
@@ -165,10 +174,8 @@ input[type=number] {
 		numQuestions++;
 		textNumTotal.innerText = "Total: " + numQuestions;
 
-		rightHandSide.value = '';
-		generateNextQuestion();
-
-		rightHandSide.focus();
+		rightHandSide.value = "";
+		generateNextQuestion();		
 	}
 	
 	function summarize() {
@@ -187,11 +194,15 @@ input[type=number] {
 		finishButton.className = "hidden";
 
 		summary.querySelector("p").innerText = 100*numCorrect/numQuestions + "% Accuracy";
-		cheeringSfx.load();
+		completeSfx.play();
 	}
 
+	document.addEventListener("click", function(event) {
+  		backgroundMusic.play();
+	});
+
 	rightHandSide.addEventListener("keyup", function(event) {
-  		if (event.keyCode === 13) //13 = Enter
+  		if (event.keyCode === 13) // Enter = 13
     			check();
 	});
 
