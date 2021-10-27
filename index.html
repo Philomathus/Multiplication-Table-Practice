@@ -28,6 +28,11 @@ body {
 	font-size: 1.2em;
 }
 
+@keyframes pulse {
+	from { transform: scale(1); }
+	to { transform: scale(1.05); }
+}
+
 #right-hand-side {
 	font-size: inherit;
 	text-align: inherit;
@@ -35,12 +40,14 @@ body {
 	width: 50vw;
 	max-width: 200px;
 	margin: auto;
-	margin-bottom: 12px;
+	margin-bottom: 17px;
 	border-radius: 20px;
 	border-width: 7px;
+	animation: pulse 1.5s ease-out 0s infinite alternate-reverse;
 }
 
-#right-hand-side:focus {
+#right-hand-side:focus, #right-hand-side:hover, #summary>button:hover, #summary>button:focus {
+	animation-play-state: paused;
 	outline: none;
 }
 
@@ -69,10 +76,15 @@ button {
 
 #finishButton {
 	font-size: 0.6em;
+	margin-top: 17px;
 }
 
 .hidden {
 	display: none !Important;
+}
+
+#summary>button {
+	animation: pulse 1.5s ease-out 0s infinite alternate-reverse;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -94,7 +106,7 @@ input[type=number] {
 	<div id="main">
 		<div id="interface">
 			<p id="left-hand-side"></p>
-			<input id="right-hand-side" type="number" min="1" required/>
+			<input id="right-hand-side" type="number" min="1" step="1" required/>
 			<button onclick="check()">Check</button>
 		</div>
 
@@ -104,7 +116,7 @@ input[type=number] {
 		<button id="finishButton" onclick="summarize()">Finish</button>
 
 		<div id="summary" class="hidden">
-			<p>100% accuracy.</p>
+			<p>100% Accuracy</p>
 			<button onclick="location.reload()">Play Again</button>
 		</div>
 	</div>
@@ -130,7 +142,7 @@ input[type=number] {
 		correctSfx = document.getElementById("correct-sfx"),
 		completeSfx = document.getElementById("complete-sfx"),
 		backgroundMusic = document.getElementById("background-music"),
-		min = 2, max = 11,
+		min = 2, max = 10,
 		multiplicand, 
 		multiplier, 
 		product, 
@@ -139,7 +151,7 @@ input[type=number] {
 		numQuestions = 0;
 
 	correctSfx.volume = 0.3;
-	backgroundMusic.volume = 0.05;
+	backgroundMusic.volume = 0.25;
 
 	function randomIntFromRange(min, max) {
 		return Math.round(min+Math.random()*(max-min));
