@@ -94,7 +94,7 @@ input[type=number] {
 	<div id="main">
 		<div id="interface">
 			<p id="left-hand-side"></p>
-			<input id="right-hand-side" type="number" min="1" required/>
+			<input id="right-hand-side" type="number" min="1"/>
 			<button onclick="check()">Check</button>
 		</div>
 
@@ -149,6 +149,9 @@ input[type=number] {
 	}
 
 	function check() {
+		if(rightHandSide.value == null)
+			return;
+		
 		if(rightHandSide.value == product) {
 			numCorrect++;
 			textNumCorrect.innerText = "Correct: " + numCorrect;
@@ -183,7 +186,7 @@ input[type=number] {
 		interface.className = "hidden";
 		finishButton.className = "hidden";
 
-		summary.querySelector("p").innerText = Math.round(100.0*numCorrect/numQuestions) + "% Accuracy";
+		summary.querySelector("p").innerText = 100*numCorrect/numQuestions + "% Accuracy";
 		cheeringSfx.load();
 	}
 
