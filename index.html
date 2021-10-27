@@ -16,6 +16,7 @@ body {
 	height: 90vh;
 	text-align: center;
 	font-size: 3em;
+	positive: relative;
 }
 
 #main {
@@ -99,6 +100,304 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+/*particle css animation Bekah McDonald*/
+
+#particle-container {
+	position: absolute; 
+	overflow: hidden; 
+	height: 100%; 
+	width: 100%; 
+	z-index: -1;
+}
+
+.particle {
+  border-radius: 50%;
+  background-color: #8f8f8f;
+  font-size: 0;
+  position: absolute;
+}
+
+.particle:nth-child(1) {
+  filter: blur(3px);
+  left: 60vw;
+  top: 35vh;
+  height: 30px;
+  width: 30px;
+  animation: particle-1 24s linear both infinite -28s;
+}
+
+@keyframes particle-1 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(-8vw, -66vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(2) {
+  filter: blur(3px);
+  left: 85vw;
+  top: 51vh;
+  height: 12px;
+  width: 12px;
+  animation: particle-2 25s linear both infinite -28s;
+}
+
+@keyframes particle-2 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(34vw, -65vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(3) {
+  filter: blur(2px);
+  left: 81vw;
+  top: 49vh;
+  height: 22px;
+  width: 22px;
+  animation: particle-3 23s linear both infinite -14s;
+}
+
+@keyframes particle-3 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(20vw, -27vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(4) {
+  filter: blur(6px);
+  left: 33vw;
+  top: 13vh;
+  height: 24px;
+  width: 24px;
+  animation: particle-4 25s linear both infinite -7s;
+}
+
+@keyframes particle-4 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(7vw, -41vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(5) {
+  filter: blur(4px);
+  left: 73vw;
+  top: 19vh;
+  height: 16px;
+  width: 16px;
+  animation: particle-5 25s linear both infinite -21s;
+}
+
+@keyframes particle-5 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(35vw, -39vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(6) {
+  filter: blur(2px);
+  left: 36vw;
+  top: 91vh;
+  height: 22px;
+  width: 22px;
+  animation: particle-6 22s linear both infinite -14s;
+}
+
+@keyframes particle-6 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(35vw, -57vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(7) {
+  filter: blur(5px);
+  left: 13vw;
+  top: 88vh;
+  height: 16px;
+  width: 16px;
+  animation: particle-7 23s linear both infinite -28s;
+}
+
+@keyframes particle-7 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(18vw, -64vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(8) {
+  filter: blur(5px);
+  left: 42vw;
+  top: 79vh;
+  height: 30px;
+  width: 30px;
+  animation: particle-8 24s linear both infinite -35s;
+}
+
+@keyframes particle-8 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(23vw, -62vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(9) {
+  filter: blur(5px);
+  left: 98vw;
+  top: 54vh;
+  height: 14px;
+  width: 14px;
+  animation: particle-9 21s linear both infinite -28s;
+}
+
+@keyframes particle-9 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(32vw, -34vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+.particle:nth-child(10) {
+  filter: blur(5px);
+  left: 28vw;
+  top: 100vh;
+  height: 26px;
+  width: 26px;
+  animation: particle-10 25s linear both infinite -28s;
+}
+
+@keyframes particle-10 {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  99.9% {
+    transform: translate(27vw, -42vw);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -119,6 +418,21 @@ input[type=number] {
 			<p>100% Accuracy</p>
 			<button onclick="location.reload()">Play Again</button>
 		</div>
+		
+	</div>
+
+	<div id="particle-container">
+		<div class="particle">0</div>
+  		<div class="particle">1</div>
+  		<div class="particle">2</div>
+  		<div class="particle">3</div>
+  		<div class="particle">4</div>
+  		<div class="particle">5</div>
+  		<div class="particle">6</div>
+  		<div class="particle">7</div>
+  		<div class="particle">8</div>
+  		<div class="particle">9</div>
+  		<div class="particle">10</div>
 	</div>
 
 <audio id="correct-sfx">
